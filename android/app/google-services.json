@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "274866482459",
+    "firebase_url": "https://event-app-ikfram.firebaseio.com",
+    "project_id": "event-app-ikfram",
+    "storage_bucket": "event-app-ikfram.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:274866482459:android:c9c08a0643005635e137be",
+        "android_client_info": {
+          "package_name": "com.shogundev.event_app_ikfram"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "274866482459-jh3j91fpc6taj6kh3unob6k320ddpva4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shogundev.event_app_ikfram",
+            "certificate_hash": "9a76751b08ed6d9b358d48a9c9cf864e5fe23f66"
+          }
+        },
+        {
+          "client_id": "274866482459-n7gphii5q3nc98ol8cpkalot6vhvn9v4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWgkRbMGB8xLV29DGVsTzrimyaj7_9fYc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "274866482459-n7gphii5q3nc98ol8cpkalot6vhvn9v4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
