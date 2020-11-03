@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthProvider {
@@ -7,47 +8,32 @@ class AuthProvider {
 
   Stream<User> get authStateChanges => _firebaseAuth.authStateChanges();
 
-  Future<String> signIn(String email, String password) async {
-    try {
-      await _firebaseAuth.signInWithEmailAndPassword(
-          email: email, password: password);
-      print('Inloggen');
-      return "Signed in";
-    } on FirebaseAuthException catch (error) {
-      return error.message;
-    }
-  }
-
-  Future<String> signUp(String email, String password) async {
-    try {
-      await _firebaseAuth.createUserWithEmailAndPassword(
-          email: email, password: password);
-      print('Registreer');
-      return "Signed in";
-    } on FirebaseAuthException catch (error) {
-      return error.message;
-    }
-  }
-
   Future<String> submitForm(String email, String password, bool isLogin) async {
+    UserCredential userCredential;
+
     if (isLogin) {
       try {
-        await _firebaseAuth.signInWithEmailAndPassword(
+        userCredential = await _firebaseAuth.signInWithEmailAndPassword(
             email: email, password: password);
-        return "Signed in";
       } on FirebaseAuthException catch (error) {
         return error.message;
       }
     } else {
       try {
-        await _firebaseAuth.createUserWithEmailAndPassword(
+        userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
             email: email, password: password);
-        print('Registreer');
-        return "Signed in";
       } on FirebaseAuthException catch (error) {
         return error.message;
       }
     }
+
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(userCredential.user.uid)
+        .set({
+      'email': email,
+      // 'email': email,
+    });
   }
 
   Future<void> signOut() async {

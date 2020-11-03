@@ -85,13 +85,13 @@ class _AuthFormState extends State<AuthForm> {
                 _userPassword = newValue;
               },
             ),
-            _isLoading
-                ? Center(child: CircularProgressIndicator())
-                : RaisedButton(
-                    // color: Theme.of(context).primaryColor,
-                    onPressed: _trySubmit,
-                    child: Text(_isLogin ? 'Login' : 'Registreer'),
-                  ),
+            RaisedButton(
+              // color: Theme.of(context).primaryColor,
+              onPressed: _trySubmit,
+              child: _isLoading
+                  ? CircularProgressIndicator()
+                  : Text(_isLogin ? 'Login' : 'Registreer'),
+            ),
             FlatButton(
               textColor: Theme.of(context).primaryColor,
               onPressed: () {

@@ -1,5 +1,7 @@
 import 'package:event_app_ikfram/providers/auth_provider.dart';
 import 'package:event_app_ikfram/screens/home_screen.dart';
+import 'package:event_app_ikfram/widgets/auth/auth_wrapper.dart';
+import 'package:event_app_ikfram/widgets/navbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -25,7 +27,7 @@ class MyApp extends StatelessWidget {
         )
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Epp',
         theme: ThemeData(
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -33,18 +35,5 @@ class MyApp extends StatelessWidget {
         home: AuthWrapper(),
       ),
     );
-  }
-}
-
-class AuthWrapper extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final currentUser = context.watch<User>();
-
-    if (currentUser != null) {
-      return HomeScreen();
-    }
-
-    return AuthScreen();
   }
 }
