@@ -25,7 +25,7 @@ class _AuthFormState extends State<AuthForm> {
   void _trySubmit() {
     final isValid = _formKey.currentState.validate(); // valideer de form
     FocusScope.of(context).unfocus(); // unfocus de softkeyboard
-    print(_userEmail);
+    print('_isLoading = true');
 
     if (isValid) {
       setState(() {
@@ -39,6 +39,8 @@ class _AuthFormState extends State<AuthForm> {
     setState(() {
       _isLoading = false;
     });
+
+    print('_isLoading = false');
 
     // if (_isLogin) {
     //   context.read<AuthProvider>().signIn(_userEmail, _userPassword);
