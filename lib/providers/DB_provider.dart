@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class AuthProvider {
+class DBProvider {
   final FirebaseAuth _firebaseAuth;
   UserCredential userCredential;
 
-  AuthProvider(this._firebaseAuth);
+  DBProvider(this._firebaseAuth);
 
   Stream<User> get authStateChanges => _firebaseAuth.authStateChanges();
 
@@ -41,9 +41,5 @@ class AuthProvider {
     } on FirebaseAuthException catch (error) {
       return error.message;
     }
-  }
-
-  UserCredential get currentUser {
-    return userCredential;
   }
 }

@@ -45,9 +45,9 @@ class _NavBarState extends State<NavBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(_title),
-      ),
+      // appBar: AppBar(
+      //   title: Text(_title),
+      // ),
       body: _widgetOptions[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         showSelectedLabels: false,

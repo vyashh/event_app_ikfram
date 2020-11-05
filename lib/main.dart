@@ -29,9 +29,10 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Epp',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
+            fontFamily: 'Roboto',
+            primarySwatch: Colors.blue,
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+            backgroundColor: Colors.white10),
         home: AuthWrapper(),
       ),
     );
