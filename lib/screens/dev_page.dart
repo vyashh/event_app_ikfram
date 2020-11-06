@@ -18,7 +18,7 @@ class _DevPageState extends State<DevPage> {
           appBar: AppBar(
             bottom: TabBar(
               tabs: [
-                Tab(icon: Icon(Icons.directions_car)),
+                Tab(icon: Icon(Icons.event)),
                 Tab(icon: Icon(Icons.directions_transit)),
                 Tab(icon: Icon(Icons.directions_bike)),
               ],

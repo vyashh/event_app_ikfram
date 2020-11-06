@@ -28,61 +28,62 @@ class EventUpcomingCard extends StatelessWidget {
           ),
           // color: Theme.of(context).primaryColor,
           // elevation: 10,
-          child: Column(
-            // mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              ListTile(
-                
-                leading: Image.network(
-                    'https://i.pinimg.com/originals/41/66/0b/41660bbaea604cf4c82cae29a631488c.jpg'),
-                title: Text(
-                  name,
-                  style: TextStyle(
-                      // color: Colors.white,
-                      // fontSize: 20,
-                      fontWeight: FontWeight.bold),
-                ),
-                subtitle: Column(
-                  children: [
-                    Row(children: [
-                      Icon(
-                        Icons.date_range,
-                        color: Colors.grey,
-                      ),
-                      Text(
-                        dateTime,
-                        style: TextStyle(),
-                      ),
-                    ]),
-                    Row(
-                      children: [
+          child: SingleChildScrollView(
+                      child: Column(
+              // mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                ListTile(
+                  leading: Image.network(
+                      'https://i.pinimg.com/originals/41/66/0b/41660bbaea604cf4c82cae29a631488c.jpg'),
+                  title: Text(
+                    name,
+                    style: TextStyle(
+                        // color: Colors.white,
+                        // fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  subtitle: Column(
+                    children: [
+                      Row(children: [
                         Icon(
-                          Icons.person,
+                          Icons.date_range,
                           color: Colors.grey,
                         ),
-                        Text(teamleader),
-                      ],
-                    ),
-                  ],
+                        Text(
+                          dateTime,
+                          style: TextStyle(),
+                        ),
+                      ]),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.person,
+                            color: Colors.grey,
+                          ),
+                          Text(teamleader),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              // ButtonTheme.bar(
-              //   child: ButtonBar(
-              //     children: <Widget>[
-              //       FlatButton(
-              //         child: const Text('Edit',
-              //             style: TextStyle(color: Colors.white)),
-              //         onPressed: () {},
-              //       ),
-              //       FlatButton(
-              //         child: const Text('Delete',
-              //             style: TextStyle(color: Colors.white)),
-              //         onPressed: () {},
-              //       ),
-              //     ],
-              //   ),
-              // ),
-            ],
+                // ButtonTheme.bar(
+                //   child: ButtonBar(
+                //     children: <Widget>[
+                //       FlatButton(
+                //         child: const Text('Edit',
+                //             style: TextStyle(color: Colors.white)),
+                //         onPressed: () {},
+                //       ),
+                //       FlatButton(
+                //         child: const Text('Delete',
+                //             style: TextStyle(color: Colors.white)),
+                //         onPressed: () {},
+                //       ),
+                //     ],
+                //   ),
+                // ),
+              ],
+            ),
           ),
         ),
       );

@@ -1,4 +1,5 @@
 import 'package:event_app_ikfram/screens/dev_page.dart';
+import 'package:event_app_ikfram/screens/test_screen.dart';
 import 'package:flutter/material.dart';
 import '../screens/profile_screen.dart';
 import '../screens/home_screen.dart';
@@ -67,7 +68,8 @@ class _NavBarState extends State<NavBar> {
               // color: Theme.of(context).accentColor,
             ),
             onPressed: () {
-              Navigator.of(context).pushNamed(DevPage.routeName);
+              // Navigator.of(context).pushNamed(DevPage.routeName);
+              Navigator.of(context).pushNamed(TestScreen.routeName);
             },
           )
         ],

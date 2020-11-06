@@ -34,37 +34,58 @@ class EventAll extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return LoadingScreen();
         } else {
-          return ListView.builder(
-            itemCount: data.length,
-            itemBuilder: (_, index) {
-              var data = snapshot.data;
-              var timestampToDateTime =
-                  DateTime.parse(data[index]['dateTime'].toDate().toString());
-              var formattedDate =
-                  DateFormat('dd-MM-yyy kk:mm').format(timestampToDateTime);
-              final List<dynamic> attendees = data[index]['attendees'];
+          return CustomScrollView(
+            slivers: <Widget>[
+              SliverAppBar(
+                title: Text(data[0]['name']),
+                backgroundColor: Colors.deepPurple,
+                expandedHeight: 200,
+                flexibleSpace: FlexibleSpaceBar(
+                  background: Image.network(
+                      'https://chefjet.com/wp-content/uploads/2017/06/Jet-Tila-Thai-Chicken-Curry.jpg',
+                      fit: BoxFit.cover),
+                ),
+              ),
+              SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) {
+                    var data = snapshot.data;
+                    var timestampToDateTime = DateTime.parse(
+                        data[index]['dateTime'].toDate().toString());
+                    var formattedDate = DateFormat('dd-MM-yyy kk:mm')
+                        .format(timestampToDateTime);
+                    final List<dynamic> attendees = data[index]['attendees'];
 
-              if (index == 0) {
-                return EventUpcomingCard(
-                  name: data[index]['name'],
-                  dateTime: formattedDate,
-                  teamleader: data[index]['teamleader'],
-                  attendees: data[index]['attendees'],
-                  isUpcoming: true,
-                );
-              } else {
-                if (attendees.contains(auth.currentUser.uid)) {
-                  return EventUpcomingCard(
-                    name: data[index]['name'],
-                    dateTime: formattedDate,
-                    teamleader: data[index]['teamleader'],
-                    attendees: data[index]['attendees'],
-                  );
-                }
-              }
-              return SizedBox(); // idk waarom het niet werkt, maar zonder dit kan ik niks laten zien vanuit de bovenste if statement
-            },
+                    if (index == 0) {
+                      return EventUpcomingCard(
+                        name: data[index]['name'],
+                        dateTime: formattedDate,
+                        teamleader: data[index]['teamleader'],
+                        attendees: data[index]['attendees'],
+                        // isUpcoming: true,
+                      );
+                    } else {
+                      if (attendees.contains(auth.currentUser.uid)) {
+                        return EventUpcomingCard(
+                          name: data[index]['name'],
+                          dateTime: formattedDate,
+                          teamleader: data[index]['teamleader'],
+                          attendees: data[index]['attendees'],
+                        );
+                      }
+                    }
+                    return SizedBox(); // idk waarom het niet werkt, maar zonder dit kan ik niks laten zien vanuit de bovenste if statement
+                  },
+                  childCount: data.length,
+                ),
+              ),
+            ],
           );
+
+          // return ListView.builder(
+          //   itemCount: data.length,
+          //   itemBuilder: (_, index) {},
+          // );
         }
       },
     );
