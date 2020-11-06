@@ -1,4 +1,5 @@
 import 'package:event_app_ikfram/providers/auth_provider.dart';
+import 'package:event_app_ikfram/screens/dev_page.dart';
 import 'package:event_app_ikfram/screens/event_details_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
         routes: {
           ChatScreen.routeName: (ctx) => ChatScreen(),
           EventDetailsScreen.routeName: (ctx) => EventDetailsScreen(),
+          DevPage.routeName: (ctx) => DevPage(),
         },
       ),
     );

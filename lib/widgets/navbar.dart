@@ -1,3 +1,4 @@
+import 'package:event_app_ikfram/screens/dev_page.dart';
 import 'package:flutter/material.dart';
 import '../screens/profile_screen.dart';
 import '../screens/home_screen.dart';
@@ -49,15 +50,26 @@ class _NavBarState extends State<NavBar> {
     return Scaffold(
       appBar: AppBar(
         title: Text(_title),
+        elevation: 0,
         actions: [
           IconButton(
-              icon: Icon(
-                Icons.chat_rounded,
-                // color: Theme.of(context).accentColor,
-              ),
-              onPressed: () {
-                Navigator.of(context).pushNamed(ChatScreen.routeName);
-              })
+            icon: Icon(
+              Icons.chat_rounded,
+              // color: Theme.of(context).accentColor,
+            ),
+            onPressed: () {
+              Navigator.of(context).pushNamed(ChatScreen.routeName);
+            },
+          ),
+          IconButton(
+            icon: Icon(
+              Icons.settings,
+              // color: Theme.of(context).accentColor,
+            ),
+            onPressed: () {
+              Navigator.of(context).pushNamed(DevPage.routeName);
+            },
+          )
         ],
       ),
       body: _widgetOptions[_selectedIndex],

@@ -11,6 +11,7 @@ import 'event_list_item.dart';
 
 class EventAll extends StatelessWidget {
   var userDocs;
+  ScrollController _scrollController;
 
   Future getEvents() async {
     var firestore = FirebaseFirestore.instance;
@@ -49,6 +50,7 @@ class EventAll extends StatelessWidget {
                   dateTime: formattedDate,
                   teamleader: data[index]['teamleader'],
                   attendees: data[index]['attendees'],
+                  isUpcoming: true,
                 );
               } else {
                 if (attendees.contains(auth.currentUser.uid)) {

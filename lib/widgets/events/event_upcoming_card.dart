@@ -6,13 +6,14 @@ class EventUpcomingCard extends StatelessWidget {
   final String dateTime;
   final String teamleader;
   final List<dynamic> attendees;
+  final bool isUpcoming;
 
-  EventUpcomingCard({
-    this.name,
-    this.dateTime,
-    this.teamleader,
-    this.attendees,
-  });
+  EventUpcomingCard(
+      {this.name,
+      this.dateTime,
+      this.teamleader,
+      this.attendees,
+      this.isUpcoming = false});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class EventUpcomingCard extends StatelessWidget {
 
     if (attendees.contains(auth.currentUser.uid)) {
       return Container(
-        height: 100,
+        height: isUpcoming ? 300 : 100,
         child: Card(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
@@ -31,6 +32,7 @@ class EventUpcomingCard extends StatelessWidget {
             // mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               ListTile(
+                
                 leading: Image.network(
                     'https://i.pinimg.com/originals/41/66/0b/41660bbaea604cf4c82cae29a631488c.jpg'),
                 title: Text(

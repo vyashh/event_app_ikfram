@@ -8,12 +8,12 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Expanded(
-          child: SizedBox(
-            height: 300,
-            child: EventFirstUpcoming(),
-          ),
-        ),
+        // Expanded(
+        //   child: SizedBox(
+        //     height: 300,
+        //     child: EventFirstUpcoming(),
+        //   ),
+        // ),
         EventAll()
       ],
     );
