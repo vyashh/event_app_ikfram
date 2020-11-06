@@ -19,6 +19,7 @@ class _AuthFormState extends State<AuthForm> {
   final _formKey = GlobalKey<FormState>();
   var _isLogin = true;
   var _userEmail = '';
+  var _userName = '';
   var _userPassword = '';
   var _isLoading = false;
 
@@ -34,7 +35,7 @@ class _AuthFormState extends State<AuthForm> {
       _formKey.currentState.save();
       context
           .read<AuthProvider>()
-          .submitForm(_userEmail, _userPassword, _isLogin);
+          .submitForm(_userName, _userEmail, _userPassword, _isLogin);
     }
     setState(() {
       _isLoading = false;
@@ -56,6 +57,24 @@ class _AuthFormState extends State<AuthForm> {
         child: Form(
           key: _formKey,
           child: Column(children: <Widget>[
+            if (!_isLogin)
+              TextFormField(
+                key: ValueKey('name'),
+                // autocorrect: false,
+                textCapitalization: TextCapitalization.none,
+                // enableSuggestions: false,
+                decoration: InputDecoration(labelText: 'Volledige naam'),
+                validator: (value) {
+                  if (value.isEmpty ||
+                      value.contains(new RegExp(r'^[0-9]+$'))) {
+                    return 'Voer een geldig naam in';
+                  }
+                  return null;
+                },
+                onSaved: (newValue) {
+                  _userName = newValue;
+                },
+              ),
             TextFormField(
               key: ValueKey('email'),
               autocorrect: false,

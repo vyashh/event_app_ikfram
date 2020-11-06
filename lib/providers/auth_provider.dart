@@ -9,7 +9,8 @@ class AuthProvider {
 
   Stream<User> get authStateChanges => _firebaseAuth.authStateChanges();
 
-  Future<String> submitForm(String email, String password, bool isLogin) async {
+  Future<String> submitForm(
+      String username, String email, String password, bool isLogin) async {
     if (isLogin) {
       try {
         userCredential = await _firebaseAuth.signInWithEmailAndPassword(
@@ -31,7 +32,7 @@ class AuthProvider {
         .doc(userCredential.user.uid)
         .set({
       'email': email,
-      // 'email': email,
+      'name': username,
     });
   }
 

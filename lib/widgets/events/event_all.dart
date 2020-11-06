@@ -27,6 +27,7 @@ class EventAll extends StatelessWidget {
               name: eventDocs[index]['name'],
               // dateTime: eventDocs[index]['dateTime'],
               teamleader: eventDocs[index]['teamleader'],
+              attendees: eventDocs[index]['attendees'],
             ),
           ),
         );
