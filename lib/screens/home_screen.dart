@@ -6,6 +6,16 @@ import '../widgets/events/event_all.dart';
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return EventAll();
+    return Stack(
+      children: [
+        Expanded(
+          child: SizedBox(
+            height: 300,
+            child: EventFirstUpcoming(),
+          ),
+        ),
+        EventAll()
+      ],
+    );
   }
 }

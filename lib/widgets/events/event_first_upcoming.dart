@@ -24,17 +24,17 @@ class EventFirstUpcoming extends StatelessWidget {
           return LoadingScreen();
         } else {
           var data = snapshot.data;
-          var timestapToDateTime =
+          var timestampToDateTime =
               DateTime.parse(data[0]['dateTime'].toDate().toString());
           var formattedDate =
-              DateFormat('dd-MM-yyy kk:mm').format(timestapToDateTime);
-
+              DateFormat('dd-MM-yyy kk:mm').format(timestampToDateTime);
           return ListView(
             children: [
               ListTile(
                 title: Text(
                   data[0]['name'],
                 ),
+                subtitle: Text(formattedDate.toString()),
                 onTap: () {
                   Navigator.push(
                     context,
