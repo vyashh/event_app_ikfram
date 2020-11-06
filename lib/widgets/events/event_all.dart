@@ -12,15 +12,16 @@ class EventAll extends StatelessWidget {
     return StreamBuilder(
       stream: FirebaseFirestore.instance.collection('events').snapshots(),
       builder: (ctx, chatSnapshot) {
-        if (chatSnapshot.connectionState == ConnectionState.waiting) {
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        }
+        // if (chatSnapshot.connectionState == ConnectionState.waiting) {
+        //   return Center(
+        //     child: CircularProgressIndicator(),
+        //   );
+        // }
         final eventDocs = chatSnapshot.data.documents;
         print(eventDocs[0]['dateTime']);
         return SizedBox(
           height: 175,
+          width: double.infinity,
           child: ListView.builder(
             itemCount: eventDocs.length,
             itemBuilder: (ctx, index) => EventListItem(

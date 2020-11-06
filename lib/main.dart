@@ -1,12 +1,11 @@
 import 'package:event_app_ikfram/providers/auth_provider.dart';
-import 'package:event_app_ikfram/screens/home_screen.dart';
-import 'package:event_app_ikfram/widgets/auth/auth_wrapper.dart';
-import 'package:event_app_ikfram/widgets/navbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
-import './screens/auth_screen.dart';
+
+import './screens/chat_screen.dart';
+import './widgets/auth/auth_wrapper.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,11 +28,15 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Epp',
         theme: ThemeData(
-            fontFamily: 'Roboto',
-            primarySwatch: Colors.blue,
-            visualDensity: VisualDensity.adaptivePlatformDensity,
-            backgroundColor: Colors.white10),
+          fontFamily: 'Roboto',
+          primarySwatch: Colors.teal,
+          accentColor: Colors.amber,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
         home: AuthWrapper(),
+        routes: {
+          ChatScreen.routeName: (ctx) => ChatScreen(),
+        },
       ),
     );
   }

@@ -3,6 +3,8 @@ import '../screens/profile_screen.dart';
 import '../screens/home_screen.dart';
 import '../screens/previous_events_screen.dart';
 
+import '../screens/chat_screen.dart';
+
 class NavBar extends StatefulWidget {
   @override
   _NavBarState createState() => _NavBarState();
@@ -10,7 +12,7 @@ class NavBar extends StatefulWidget {
 
 class _NavBarState extends State<NavBar> {
   int _selectedIndex = 0;
-  String _title = 'Events';
+  String _title = 'Home';
 
   List<Widget> _widgetOptions = [
     HomeScreen(),
@@ -25,7 +27,7 @@ class _NavBarState extends State<NavBar> {
       switch (index) {
         case 0:
           {
-            _title = 'Events';
+            _title = 'Home';
           }
           break;
         case 1:
@@ -45,9 +47,19 @@ class _NavBarState extends State<NavBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text(_title),
-      // ),
+      appBar: AppBar(
+        title: Text(_title),
+        actions: [
+          IconButton(
+              icon: Icon(
+                Icons.chat_rounded,
+                // color: Theme.of(context).accentColor,
+              ),
+              onPressed: () {
+                Navigator.of(context).pushNamed(ChatScreen.routeName);
+              })
+        ],
+      ),
       body: _widgetOptions[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         showSelectedLabels: false,

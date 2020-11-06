@@ -5,14 +5,16 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 175,
+      width: double.infinity,
       child: Column(
         children: <Widget>[
           Container(
-            transform: Matrix4.translationValues(0.0, 50.0, 20.0),
-            padding: EdgeInsets.only(left: 30),
+            transform: Matrix4.translationValues(0.0, 10.0, 0.0),
+            padding: EdgeInsets.only(left: 15),
             alignment: Alignment.centerLeft,
             child: Text(
-              'Events',
+              'Nu Bezig',
               style: TextStyle(
                 fontSize: 25,
                 fontWeight: FontWeight.bold,
@@ -20,9 +22,21 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 20,
+            height: 8,
           ),
-          EventAll(),
+          // EventAll(),
+          Container(
+            transform: Matrix4.translationValues(0.0, 10.0, 0.0),
+            padding: EdgeInsets.only(left: 15),
+            alignment: Alignment.centerLeft,
+            child: Text(
+              'Aankomende Events',
+              style: TextStyle(
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
         ],
       ),
     );

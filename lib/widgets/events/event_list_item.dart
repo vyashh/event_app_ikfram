@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import '../../screens/loading_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../../providers/DB_provider.dart';
 
 class EventListItem extends StatelessWidget {
   final String name;
@@ -21,7 +21,7 @@ class EventListItem extends StatelessWidget {
         builder:
             (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
           if (snapshot.hasError) {
-            return Text("Something went wrong");
+            LoadingScreen();
           }
 
           if (snapshot.connectionState == ConnectionState.done &&
@@ -32,7 +32,7 @@ class EventListItem extends StatelessWidget {
                 print('Hi');
               },
               child: Container(
-                padding: EdgeInsets.all(20),
+                padding: EdgeInsets.all(10),
                 height: 150,
                 width: double.maxFinite,
                 child: Card(
@@ -81,7 +81,7 @@ class EventListItem extends StatelessWidget {
             );
           }
 
-          return Text("loading");
+          return LoadingScreen();
         });
   }
 }
