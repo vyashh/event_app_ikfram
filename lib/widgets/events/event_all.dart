@@ -6,8 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
-
-import 'event_list_item.dart';
+import 'package:slide_countdown_clock/slide_countdown_clock.dart';
 
 class EventAll extends StatelessWidget {
   var userDocs;
@@ -25,11 +24,16 @@ class EventAll extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final FirebaseAuth auth = FirebaseAuth.instance;
+    GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
 
     return FutureBuilder(
       future: getEvents(),
       builder: (_, snapshot) {
         var data = snapshot.data;
+        var timestampToDateTime =
+            DateTime.parse(data[0]['dateTime'].toDate().toString());
+        var formattedDate =
+            DateFormat('dd-MM-yyy kk:mm').format(timestampToDateTime);
 
         if (snapshot.connectionState == ConnectionState.waiting) {
           return LoadingScreen();
@@ -37,13 +41,33 @@ class EventAll extends StatelessWidget {
           return CustomScrollView(
             slivers: <Widget>[
               SliverAppBar(
-                title: Text(data[0]['name']),
-                backgroundColor: Colors.deepPurple,
+                title: Text(
+                  formattedDate,
+                  style: TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.bold),
+                ),
+                backgroundColor: Theme.of(context).primaryColor,
                 expandedHeight: 200,
+                actions: [
+                  IconButton(
+                      icon: Icon(
+                        Icons.navigate_next,
+                        color: Colors.black,
+                      ),
+                      onPressed: () {}),
+                ],
                 flexibleSpace: FlexibleSpaceBar(
+                  title: Text(
+                    data[0]['name'],
+                    style: TextStyle(
+                        color: Colors.black, fontWeight: FontWeight.bold),
+                  ),
                   background: Image.network(
-                      'https://chefjet.com/wp-content/uploads/2017/06/Jet-Tila-Thai-Chicken-Curry.jpg',
-                      fit: BoxFit.cover),
+                    'https://i.imgur.com/P7KCEnY.png',
+                    fit: BoxFit.cover,
+                    colorBlendMode: BlendMode.overlay,
+                    color: Theme.of(context).primaryColor.withOpacity(1),
+                  ),
                 ),
               ),
               SliverList(
@@ -56,23 +80,13 @@ class EventAll extends StatelessWidget {
                         .format(timestampToDateTime);
                     final List<dynamic> attendees = data[index]['attendees'];
 
-                    if (index == 0) {
+                    if (attendees.contains(auth.currentUser.uid) && index > 0) {
                       return EventUpcomingCard(
                         name: data[index]['name'],
                         dateTime: formattedDate,
                         teamleader: data[index]['teamleader'],
                         attendees: data[index]['attendees'],
-                        // isUpcoming: true,
                       );
-                    } else {
-                      if (attendees.contains(auth.currentUser.uid)) {
-                        return EventUpcomingCard(
-                          name: data[index]['name'],
-                          dateTime: formattedDate,
-                          teamleader: data[index]['teamleader'],
-                          attendees: data[index]['attendees'],
-                        );
-                      }
                     }
                     return SizedBox(); // idk waarom het niet werkt, maar zonder dit kan ik niks laten zien vanuit de bovenste if statement
                   },

@@ -18,7 +18,7 @@ class AddEvent extends StatelessWidget {
       FirebaseFirestore.instance.collection("events").add({
         "name": getRandomString(10),
         "attendees": ['prdvRniEhtdJgL9C8pkSgs7irh13'],
-        "dateTime": DateTime.now(),
+        "dateTime": DateTime.utc(2021, DateTime.june, 6),
         "teamleader": "prdvRniEhtdJgL9C8pkSgs7irh13"
       }).then((response) {
         print(response.hashCode);

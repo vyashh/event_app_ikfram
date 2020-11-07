@@ -29,7 +29,7 @@ class EventUpcomingCard extends StatelessWidget {
           // color: Theme.of(context).primaryColor,
           // elevation: 10,
           child: SingleChildScrollView(
-                      child: Column(
+            child: Column(
               // mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 ListTile(
@@ -48,6 +48,7 @@ class EventUpcomingCard extends StatelessWidget {
                         Icon(
                           Icons.date_range,
                           color: Colors.grey,
+                          size: 15,
                         ),
                         Text(
                           dateTime,
@@ -59,8 +60,11 @@ class EventUpcomingCard extends StatelessWidget {
                           Icon(
                             Icons.person,
                             color: Colors.grey,
+                            size: 15,
                           ),
-                          Text(teamleader),
+                          Text(
+                            teamleader,
+                          ),
                         ],
                       ),
                     ],

@@ -68,8 +68,8 @@ class _NavBarState extends State<NavBar> {
               // color: Theme.of(context).accentColor,
             ),
             onPressed: () {
-              // Navigator.of(context).pushNamed(DevPage.routeName);
-              Navigator.of(context).pushNamed(TestScreen.routeName);
+              Navigator.of(context).pushNamed(DevPage.routeName);
+              // Navigator.of(context).pushNamed(TestScreen.routeName);
             },
           )
         ],
