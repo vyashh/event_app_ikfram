@@ -34,6 +34,9 @@ class EventAll extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return LoadingScreen();
         } else {
+          if (snapshot.data.length <= 0) {
+            return Center(child: Text('No data'));
+          }
           var data = snapshot.data;
           var timestampToDateTime =
               DateTime.parse(data[0]['dateTime'].toDate().toString());

@@ -42,66 +42,66 @@ class _EventFirstUpcomingCardState extends State<EventFirstUpcomingCard> {
           ),
         ),
         child: Padding(
-          padding: EdgeInsets.only(top: 100),
+          padding: EdgeInsets.only(top: 80),
           child: ListTile(
-            leading: Container(
-              margin: EdgeInsets.only(left: 30),
+            leading: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  widget.name,
+                  style: TextStyle(
+                      color: Colors.white.withOpacity(.9),
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: 2,
+                ),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      Icons.date_range,
+                      color: Colors.grey,
+                      size: 15,
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text(
+                      widget.date,
+                      style: TextStyle(
+                          fontSize: 12, color: Colors.white.withOpacity(.8)),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      Icons.person,
+                      color: Colors.grey,
+                      size: 15,
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text(
+                      'Bobby Brown',
+                      style: TextStyle(
+                          fontSize: 12, color: Colors.white.withOpacity(.8)),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            subtitle: Padding(
+              padding: EdgeInsets.only(left: 60),
               child: Transform.scale(
-                scale: 3,
+                scale: .9,
                 child: Image.asset(
                   'assets/images/home-avatar.png',
                 ),
-              ),
-            ),
-            title: Padding(
-              padding: EdgeInsets.only(left: 80),
-              child: Text(
-                widget.name,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
-            subtitle: Padding(
-              padding: EdgeInsets.only(left: 80, top: 10),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.date_range,
-                        color: Colors.grey,
-                        size: 15,
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        widget.date,
-                        style: TextStyle(
-                            fontSize: 15, color: Colors.white.withOpacity(.8)),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.person,
-                        color: Colors.grey,
-                        size: 15,
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        'Bobby Brown',
-                        style: TextStyle(
-                            fontSize: 15, color: Colors.white.withOpacity(.8)),
-                      ),
-                    ],
-                  ),
-                ],
               ),
             ),
           ),
