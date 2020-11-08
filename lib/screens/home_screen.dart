@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/events/event_first_upcoming.dart';
 import '../widgets/events/event_all.dart';
 
 class HomeScreen extends StatelessWidget {

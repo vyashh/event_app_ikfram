@@ -2,18 +2,24 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class EventFirstUpcomingCard extends StatelessWidget {
+class EventFirstUpcomingCard extends StatefulWidget {
   final String name;
   final String date;
   final String teamleader;
-  String teamLeaderName;
 
   EventFirstUpcomingCard({this.name, this.date, this.teamleader});
+
+  @override
+  _EventFirstUpcomingCardState createState() => _EventFirstUpcomingCardState();
+}
+
+class _EventFirstUpcomingCardState extends State<EventFirstUpcomingCard> {
+  String teamLeaderName;
 
   Future<String> _getTeamleader(String teamleaderId) {
     return FirebaseFirestore.instance
         .collection('users')
-        .doc(teamleader)
+        .doc(widget.teamleader)
         .get()
         .then(
           (value) => (teamLeaderName = value['name']),
@@ -50,7 +56,7 @@ class EventFirstUpcomingCard extends StatelessWidget {
             title: Padding(
               padding: EdgeInsets.only(left: 80),
               child: Text(
-                name,
+                widget.name,
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 20,
@@ -72,7 +78,7 @@ class EventFirstUpcomingCard extends StatelessWidget {
                         width: 5,
                       ),
                       Text(
-                        date,
+                        widget.date,
                         style: TextStyle(
                             fontSize: 15, color: Colors.white.withOpacity(.8)),
                       ),

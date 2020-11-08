@@ -41,7 +41,9 @@ class EventAll extends StatelessWidget {
               DateFormat('dd-MM-yyy kk:mm').format(timestampToDateTime);
           return CustomScrollView(
             slivers: <Widget>[
-              SliverAppBar(
+              SliverPadding(
+                padding: EdgeInsets.only(bottom: 20),
+                sliver: SliverAppBar(
                   title: Text(
                     'Volgende Event',
                     style: TextStyle(
@@ -62,7 +64,9 @@ class EventAll extends StatelessWidget {
                     name: data[0]['name'],
                     date: formattedDate,
                     teamleader: data[0]['teamleader'],
-                  )),
+                  ),
+                ),
+              ),
               SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
@@ -83,7 +87,7 @@ class EventAll extends StatelessWidget {
                       );
                     }
                     return SizedBox(
-                      height: 10,
+                      height: 0,
                     );
                     // idk waarom het niet werkt, maar zonder dit kan ik niks laten zien vanuit de bovenste if statement
                   },
