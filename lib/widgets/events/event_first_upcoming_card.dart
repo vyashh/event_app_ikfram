@@ -96,7 +96,7 @@ class _EventFirstUpcomingCardState extends State<EventFirstUpcomingCard> {
               ],
             ),
             subtitle: Padding(
-              padding: EdgeInsets.only(left: 60),
+              padding: EdgeInsets.only(left: 80),
               child: Transform.scale(
                 scale: .9,
                 child: Image.asset(
