@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         title: 'Epp',
         theme: ThemeData(
           fontFamily: 'Roboto',
-          primarySwatch: Colors.teal,
+          primarySwatch: Colors.purple,
           accentColor: Colors.amber,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),

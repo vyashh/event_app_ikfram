@@ -1,8 +1,11 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+import '../../utils/custom_color_scheme.dart';
 
 class EventUpcomingCard extends StatelessWidget {
   final String name;
+  final String eventColor;
   final String dateTime;
   final String teamleader;
   final List<dynamic> attendees;
@@ -10,6 +13,7 @@ class EventUpcomingCard extends StatelessWidget {
 
   EventUpcomingCard(
       {this.name,
+      this.eventColor,
       this.dateTime,
       this.teamleader,
       this.attendees,
@@ -19,75 +23,76 @@ class EventUpcomingCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final FirebaseAuth auth = FirebaseAuth.instance;
 
+    Color _colorGetter(String eventColor) {
+      ColorScheme theme = Theme.of(context).colorScheme;
+
+      switch (eventColor) {
+        case 'blue':
+          return theme.blue;
+          break;
+        case 'mint':
+          return theme.mint;
+          break;
+        case 'pink':
+          return theme.pink;
+          break;
+        case 'purple':
+          return theme.purple;
+          break;
+      }
+    }
+
     if (attendees.contains(auth.currentUser.uid)) {
       return Container(
-        height: isUpcoming ? 300 : 100,
-        child: Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
-          ),
-          // color: Theme.of(context).primaryColor,
-          // elevation: 10,
-          child: SingleChildScrollView(
-            child: Column(
-              // mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                ListTile(
-                  leading: Image.network(
-                      'https://i.pinimg.com/originals/41/66/0b/41660bbaea604cf4c82cae29a631488c.jpg'),
-                  title: Text(
-                    name,
-                    style: TextStyle(
-                        // color: Colors.white,
-                        // fontSize: 20,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  subtitle: Column(
-                    children: [
-                      Row(children: [
+        height: isUpcoming ? 300 : 90,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            // mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              ListTile(
+                leading: Icon(
+                  Icons.event,
+                  size: 50,
+                  color: _colorGetter(eventColor),
+                ),
+                title: Text(
+                  name,
+                  style: TextStyle(
+                      // color: Colors.white,
+                      // fontSize: 18,
+                      fontWeight: FontWeight.bold),
+                ),
+                subtitle: Column(
+                  children: [
+                    Row(children: [
+                      Icon(
+                        Icons.date_range,
+                        color: Colors.grey,
+                        size: 15,
+                      ),
+                      Text(
+                        dateTime,
+                        style: TextStyle(fontSize: 12),
+                      ),
+                    ]),
+                    Row(
+                      children: [
                         Icon(
-                          Icons.date_range,
+                          Icons.person,
                           color: Colors.grey,
                           size: 15,
                         ),
                         Text(
-                          dateTime,
-                          style: TextStyle(),
+                          teamleader,
+                          style: TextStyle(fontSize: 12),
                         ),
-                      ]),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.person,
-                            color: Colors.grey,
-                            size: 15,
-                          ),
-                          Text(
-                            teamleader,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                      ],
+                    ),
+                  ],
                 ),
-                // ButtonTheme.bar(
-                //   child: ButtonBar(
-                //     children: <Widget>[
-                //       FlatButton(
-                //         child: const Text('Edit',
-                //             style: TextStyle(color: Colors.white)),
-                //         onPressed: () {},
-                //       ),
-                //       FlatButton(
-                //         child: const Text('Delete',
-                //             style: TextStyle(color: Colors.white)),
-                //         onPressed: () {},
-                //       ),
-                //     ],
-                //   ),
-                // ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       );

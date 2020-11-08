@@ -14,7 +14,7 @@ class NavBar extends StatefulWidget {
 
 class _NavBarState extends State<NavBar> {
   int _selectedIndex = 0;
-  String _title = 'Home';
+  String _title = 'Events';
 
   List<Widget> _widgetOptions = [
     HomeScreen(),
@@ -29,7 +29,7 @@ class _NavBarState extends State<NavBar> {
       switch (index) {
         case 0:
           {
-            _title = 'Home';
+            _title = 'Events';
           }
           break;
         case 1:
@@ -50,12 +50,17 @@ class _NavBarState extends State<NavBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(_title),
+        title: Text(
+          _title,
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        ),
         elevation: 0,
+        backgroundColor: Colors.white,
         actions: [
           IconButton(
             icon: Icon(
               Icons.chat_rounded,
+              color: Colors.black,
               // color: Theme.of(context).accentColor,
             ),
             onPressed: () {
@@ -65,7 +70,7 @@ class _NavBarState extends State<NavBar> {
           IconButton(
             icon: Icon(
               Icons.settings,
-              // color: Theme.of(context).accentColor,
+              color: Colors.black,
             ),
             onPressed: () {
               Navigator.of(context).pushNamed(DevPage.routeName);
@@ -74,6 +79,7 @@ class _NavBarState extends State<NavBar> {
           )
         ],
       ),
+      backgroundColor: Colors.white,
       body: _widgetOptions[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         showSelectedLabels: false,
