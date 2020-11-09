@@ -1,8 +1,7 @@
 import 'package:event_app_ikfram/screens/dev_page.dart';
-import 'package:event_app_ikfram/screens/test_screen.dart';
 import 'package:flutter/material.dart';
 import '../screens/profile_screen.dart';
-import '../screens/home_screen.dart';
+import '../screens/events_screen.dart';
 import '../screens/previous_events_screen.dart';
 
 import '../screens/chat_screen.dart';

@@ -3,11 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class EventFirstUpcomingCard extends StatefulWidget {
-  final String name;
+  final dynamic event;
   final String date;
-  final String teamleader;
 
-  EventFirstUpcomingCard({this.name, this.date, this.teamleader});
+  EventFirstUpcomingCard({this.event, this.date});
 
   @override
   _EventFirstUpcomingCardState createState() => _EventFirstUpcomingCardState();
@@ -19,7 +18,7 @@ class _EventFirstUpcomingCardState extends State<EventFirstUpcomingCard> {
   Future<String> _getTeamleader(String teamleaderId) {
     return FirebaseFirestore.instance
         .collection('users')
-        .doc(widget.teamleader)
+        .doc(widget.event['teamleader'])
         .get()
         .then(
           (value) => (teamLeaderName = value['name']),
@@ -44,11 +43,14 @@ class _EventFirstUpcomingCardState extends State<EventFirstUpcomingCard> {
         child: Padding(
           padding: EdgeInsets.only(top: 80),
           child: ListTile(
+            onTap: () {
+              print('Tapped hero card');
+            },
             leading: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  widget.name,
+                  widget.event['name'],
                   style: TextStyle(
                       color: Colors.white.withOpacity(.9),
                       fontSize: 20,

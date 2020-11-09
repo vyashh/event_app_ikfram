@@ -5,9 +5,9 @@ class EventDetailsScreen extends StatefulWidget {
   static const routeName = '/event-details';
 
   final dynamic event;
-  final String dateTime;
+  final String date;
 
-  EventDetailsScreen({this.event, this.dateTime});
+  EventDetailsScreen({this.event, this.date});
 
   @override
   _EventDetailsScreenState createState() => _EventDetailsScreenState();
@@ -24,7 +24,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
         child: ListTile(
           title: Text(widget.event['name']),
           subtitle: Text(
-            widget.dateTime == null ? 'null' : widget.dateTime,
+            widget.date == null ? 'null' : widget.date,
           ),
         ),
       ),

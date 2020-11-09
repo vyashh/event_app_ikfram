@@ -51,6 +51,9 @@ class EventUpcomingCard extends StatelessWidget {
             // mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               ListTile(
+                onTap: () {
+                  print('Clicked Event');
+                },
                 leading: Icon(
                   Icons.event,
                   size: 50,
@@ -91,6 +94,7 @@ class EventUpcomingCard extends StatelessWidget {
                     ),
                   ],
                 ),
+                trailing: Icon(Icons.chevron_right),
               ),
             ],
           ),
