@@ -104,9 +104,7 @@ class EventDetailsScreen extends StatelessWidget {
                           // textColor: Colors.white,
                           child: Text(
                             "View on Maps",
-                            style: TextStyle(
-                                fontWeight: FontWeight.normal,
-                                color: Colors.white),
+                            style: TextStyle(fontWeight: FontWeight.normal, color: Colors.white),
                           ),
                           padding: const EdgeInsets.symmetric(
                             vertical: 16.0,
