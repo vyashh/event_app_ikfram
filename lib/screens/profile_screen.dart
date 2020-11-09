@@ -21,44 +21,22 @@ class ProfileScreen extends StatelessWidget {
     //     )
     //   ],
     // );
-    return CustomScrollView(
-      slivers: <Widget>[
-        SliverPadding(
-          padding: EdgeInsets.only(bottom: 20),
-          sliver: SliverAppBar(
-            title: Text(
-              'Volgende Event',
-              style:
-                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-            ),
-            backgroundColor: Theme.of(context).colorScheme.purple,
-            expandedHeight: 230,
-            actions: [
-              IconButton(
-                icon: Icon(
-                  Icons.navigate_next,
-                  size: 30,
-                  // color: Colors.black,
-                ),
-                onPressed: () {},
-              )
-            ],
-            flexibleSpace: ProfileHero(),
-          ),
+    return ListView(
+      children: [
+        Container(
+          height: 230,
+          color: Theme.of(context).colorScheme.purple,
+          
         ),
-        SliverList(
-          delegate: SliverChildListDelegate([
-            Center(
-              child: Column(
-                children: [
-                  Text('Reset Password'),
-                  Text('Item'),
-                  Text('Item'),
-                  Text('Item'),
-                ],
-              ),
-            )
-          ]),
+        ListTile(
+          leading: Icon(Icons.vpn_key_sharp),
+          title: Text('Reset wachtwoord'),
+          trailing: Icon(Icons.chevron_right),
+        ),
+        ListTile(
+          leading: Icon(Icons.email),
+          title: Text('Reset E-mail'),
+          trailing: Icon(Icons.chevron_right),
         ),
       ],
     );
