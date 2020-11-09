@@ -30,12 +30,15 @@ class EventAll extends StatelessWidget {
     getEvents(auth.currentUser.uid);
   }
 
-  _toDetailScreen(BuildContext context, dynamic event, String date) {
-    Navigator.pushNamed(
-      context,
-      EventDetailsScreen.routeName,
-      arguments: event,
-    );
+  _toDetailScreen({BuildContext context, dynamic event, String date}) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => EventDetailsScreen(
+            event: event,
+            date: date,
+          ),
+        ));
   }
 
   @override
@@ -75,12 +78,18 @@ class EventAll extends StatelessWidget {
                     expandedHeight: 230,
                     actions: [
                       IconButton(
-                          icon: Icon(
-                            Icons.navigate_next,
-                            size: 30,
-                            // color: Colors.black,
-                          ),
-                          onPressed: () {}),
+                        icon: Icon(
+                          Icons.navigate_next,
+                          size: 30,
+                          // color: Colors.black,
+                        ),
+                        onPressed: () {
+                          _toDetailScreen(
+                              context: context,
+                              date: formattedDate,
+                              event: data[0]);
+                        },
+                      )
                     ],
                     flexibleSpace: EventFirstUpcomingCard(
                       event: data[0],

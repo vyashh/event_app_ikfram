@@ -1,8 +1,9 @@
+import 'package:event_app_ikfram/providers/color_provider.dart';
 import 'package:event_app_ikfram/screens/event_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../../utils/custom_color_scheme.dart';
+import '../../providers/color_provider.dart';
 
 class EventUpcomingCard extends StatelessWidget {
   final dynamic event;
@@ -13,25 +14,6 @@ class EventUpcomingCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final FirebaseAuth auth = FirebaseAuth.instance;
-
-    Color _colorGetter(String eventColor) {
-      ColorScheme theme = Theme.of(context).colorScheme;
-
-      switch (eventColor) {
-        case 'blue':
-          return theme.blue;
-          break;
-        case 'mint':
-          return theme.mint;
-          break;
-        case 'pink':
-          return theme.pink;
-          break;
-        case 'purple':
-          return theme.purple;
-          break;
-      }
-    }
 
     if (event['attendees'].contains(auth.currentUser.uid)) {
       return Container(
@@ -55,7 +37,8 @@ class EventUpcomingCard extends StatelessWidget {
                 leading: Icon(
                   Icons.event,
                   size: 50,
-                  color: _colorGetter(event['eventColor']),
+                  color: ColorProvider.colorGetter(
+                      eventColor: event['eventColor'], ctx: context),
                 ),
                 title: Text(
                   event['name'],
