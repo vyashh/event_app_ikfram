@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import '../../screens/event_details_screen.dart';
 
 class EventFirstUpcomingCard extends StatefulWidget {
   final dynamic event;
@@ -44,7 +45,14 @@ class _EventFirstUpcomingCardState extends State<EventFirstUpcomingCard> {
           padding: EdgeInsets.only(top: 80),
           child: ListTile(
             onTap: () {
-              print('Tapped hero card');
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => EventDetailsScreen(
+                      event: widget.event,
+                      date: widget.date,
+                    ),
+                  ));
             },
             leading: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

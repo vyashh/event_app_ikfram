@@ -30,6 +30,14 @@ class EventAll extends StatelessWidget {
     getEvents(auth.currentUser.uid);
   }
 
+  _toDetailScreen(BuildContext context, dynamic event, String date) {
+    Navigator.pushNamed(
+      context,
+      EventDetailsScreen.routeName,
+      arguments: event,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final FirebaseAuth auth = FirebaseAuth.instance;
@@ -93,11 +101,8 @@ class EventAll extends StatelessWidget {
                       if (attendees.contains(auth.currentUser.uid) &&
                           index > 0) {
                         return EventUpcomingCard(
-                          name: data[index]['name'],
-                          eventColor: data[index]['eventColor'],
-                          dateTime: formattedDate,
-                          teamleader: data[index]['teamleader'],
-                          attendees: data[index]['attendees'],
+                          event: data[index],
+                          date: formattedDate,
                         );
                       }
                       return SizedBox(

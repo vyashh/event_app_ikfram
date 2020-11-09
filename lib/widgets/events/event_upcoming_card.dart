@@ -1,23 +1,14 @@
+import 'package:event_app_ikfram/screens/event_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../utils/custom_color_scheme.dart';
 
 class EventUpcomingCard extends StatelessWidget {
-  final String name;
-  final String eventColor;
-  final String dateTime;
-  final String teamleader;
-  final List<dynamic> attendees;
-  final bool isUpcoming;
+  final dynamic event;
+  final String date;
 
-  EventUpcomingCard(
-      {this.name,
-      this.eventColor,
-      this.dateTime,
-      this.teamleader,
-      this.attendees,
-      this.isUpcoming = false});
+  EventUpcomingCard({this.event, this.date});
 
   @override
   Widget build(BuildContext context) {
@@ -42,9 +33,9 @@ class EventUpcomingCard extends StatelessWidget {
       }
     }
 
-    if (attendees.contains(auth.currentUser.uid)) {
+    if (event['attendees'].contains(auth.currentUser.uid)) {
       return Container(
-        height: isUpcoming ? 300 : 90,
+        height: 90,
         child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -52,15 +43,22 @@ class EventUpcomingCard extends StatelessWidget {
             children: <Widget>[
               ListTile(
                 onTap: () {
-                  print('Clicked Event');
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => EventDetailsScreen(
+                          event: event,
+                          date: date,
+                        ),
+                      ));
                 },
                 leading: Icon(
                   Icons.event,
                   size: 50,
-                  color: _colorGetter(eventColor),
+                  color: _colorGetter(event['eventColor']),
                 ),
                 title: Text(
-                  name,
+                  event['name'],
                   style: TextStyle(
                       // color: Colors.white,
                       // fontSize: 18,
@@ -75,7 +73,7 @@ class EventUpcomingCard extends StatelessWidget {
                         size: 15,
                       ),
                       Text(
-                        dateTime,
+                        date,
                         style: TextStyle(fontSize: 12),
                       ),
                     ]),
@@ -87,7 +85,7 @@ class EventUpcomingCard extends StatelessWidget {
                           size: 15,
                         ),
                         Text(
-                          teamleader,
+                          event['teamleader'],
                           style: TextStyle(fontSize: 12),
                         ),
                       ],
@@ -100,18 +98,6 @@ class EventUpcomingCard extends StatelessWidget {
           ),
         ),
       );
-      // return Card(
-      //   child: SizedBox(
-      //     width: 50,
-      //     child: Column(
-      //       children: [
-      //         Text(name),
-      //         Text(dateTime),
-      //         Text(teamleader),
-      //       ],
-      //     ),
-      //   ),
-      // );
     }
   }
 }
