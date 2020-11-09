@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           fontFamily: 'Roboto',
           primarySwatch: Colors.purple,
-          accentColor: Colors.amber,
+          accentColor: Colors.purple,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         home: AuthWrapper(),

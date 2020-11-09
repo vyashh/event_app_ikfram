@@ -103,8 +103,10 @@ class EventDetailsScreen extends StatelessWidget {
                           color: eventColor,
                           // textColor: Colors.white,
                           child: Text(
-                            "Book Now",
-                            style: TextStyle(fontWeight: FontWeight.normal),
+                            "View on Maps",
+                            style: TextStyle(
+                                fontWeight: FontWeight.normal,
+                                color: Colors.white),
                           ),
                           padding: const EdgeInsets.symmetric(
                             vertical: 16.0,
