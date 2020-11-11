@@ -26,7 +26,6 @@ class ProfileScreen extends StatelessWidget {
         Container(
           height: 230,
           color: Theme.of(context).colorScheme.purple,
-          
         ),
         ListTile(
           leading: Icon(Icons.vpn_key_sharp),
@@ -35,8 +34,16 @@ class ProfileScreen extends StatelessWidget {
         ),
         ListTile(
           leading: Icon(Icons.email),
-          title: Text('Reset E-mail'),
+          title: Text('Reset e-mail'),
           trailing: Icon(Icons.chevron_right),
+        ),
+        ListTile(
+          leading: Icon(Icons.exit_to_app),
+          title: Text('Uitloggen'),
+          trailing: Icon(Icons.chevron_right),
+          onTap: () {
+            context.read<AuthProvider>().signOut();
+          },
         ),
       ],
     );
