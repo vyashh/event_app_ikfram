@@ -4,7 +4,7 @@ import '../screens/profile_screen.dart';
 import '../screens/events_screen.dart';
 import '../screens/previous_events_screen.dart';
 
-import '../screens/chat_screen.dart';
+import '../screens/chat/chats_person_screen.dart';
 
 class NavBar extends StatefulWidget {
   @override
@@ -63,7 +63,7 @@ class _NavBarState extends State<NavBar> {
               // color: Theme.of(context).accentColor,
             ),
             onPressed: () {
-              Navigator.of(context).pushNamed(ChatScreen.routeName);
+              Navigator.of(context).pushNamed(ChatsPerson.routeName);
             },
           ),
           IconButton(
