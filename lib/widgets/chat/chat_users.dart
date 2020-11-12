@@ -23,6 +23,7 @@ class ChatUsers extends StatelessWidget {
               );
             }
             // print(chatSnapshot.data.documents.length);
+            // print(currentUser.uid);
             return ListView.builder(
               reverse: true,
               itemCount: chatSnapshot.data.documents.length,
@@ -35,7 +36,11 @@ class ChatUsers extends StatelessWidget {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ChatScreen()),
+                      MaterialPageRoute(
+                          builder: (context) => ChatScreen(
+                                currentUser: currentUser.uid,
+                                otherPerson: '8QKb2l7SAMVt8Yo49oT2',
+                              )),
                     );
                   },
                 );

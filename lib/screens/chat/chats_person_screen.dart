@@ -12,17 +12,6 @@ class ChatsPerson extends StatefulWidget {
 }
 
 class _ChatsPersonState extends State<ChatsPerson> {
-  void _getUsers() async {
-    final QuerySnapshot users =
-        await FirebaseFirestore.instance.collection('users').get();
-
-    users.docs.map((user) {
-      print(user['name']);
-    });
-
-    // print(users.docs);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,8 +33,7 @@ class _ChatsPersonState extends State<ChatsPerson> {
               // color: Theme.of(context).accentColor,
             ),
             onPressed: () {
-              // showSearch(context: context, delegate: UserSearch());
-              _getUsers();
+              showSearch(context: context, delegate: UserSearch());
             },
           ),
         ],

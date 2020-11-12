@@ -14,9 +14,9 @@ class ChatMessages extends StatelessWidget {
     return StreamBuilder(
         stream: FirebaseFirestore.instance
             .collection('chat')
-            .doc('iqz0dLPspNMD2qCDhqz8aWtGQtV2')
+            .doc(currentUser)
             .collection('chats')
-            .doc('8QKb2l7SAMVt8Yo49oT2')
+            .doc(otherPerson)
             .snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {

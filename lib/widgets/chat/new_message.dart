@@ -36,7 +36,7 @@ class _NewMessageState extends State<NewMessage> {
         {
           'createdAt': 'Now',
           'sender': userData['name'],
-          'senderId': 'SenderID',
+          'senderId': currentUser.uid,
           'text': _enteredMessage,
         }
       ])

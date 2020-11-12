@@ -6,7 +6,10 @@ class ChatScreen extends StatelessWidget {
   final String currentUser;
   final String otherPerson;
 
-  ChatScreen({this.currentUser, this.otherPerson});
+  ChatScreen({
+    @required this.currentUser,
+    @required this.otherPerson,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +34,9 @@ class ChatScreen extends StatelessWidget {
                 otherPerson: otherPerson,
               ),
             ),
-            NewMessage(),
+            NewMessage(
+              otherUser: otherPerson,
+            ),
           ],
         ),
       ),

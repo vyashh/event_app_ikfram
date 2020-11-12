@@ -2,8 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class UserSearch extends SearchDelegate<String> {
-  final Future<QuerySnapshot> users =
-      FirebaseFirestore.instance.collection('users').get();
+  Future getUsers() async {
+    var firestore = FirebaseFirestore.instance;
+
+    QuerySnapshot userSnapshot = await firestore.collection('users').get();
+    return userSnapshot.docs;
+  }
 
   @override
   List<Widget> buildActions(BuildContext context) {
@@ -23,7 +27,23 @@ class UserSearch extends SearchDelegate<String> {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    // TODO: implement buildSuggestions
-    throw UnimplementedError();
+    return FutureBuilder(
+      future: getUsers(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(
+            child: Text('Loading'),
+          );
+        }
+        return ListView.builder(
+          itemCount: snapshot.data.length,
+          itemBuilder: (context, index) {
+            return ListTile(
+              title: Text(snapshot.data[index]['name']),
+            );
+          },
+        );
+      },
+    );
   }
 }
