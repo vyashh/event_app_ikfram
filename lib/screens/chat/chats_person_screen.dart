@@ -36,7 +36,16 @@ class _ChatsPersonState extends State<ChatsPerson> {
           ),
         ],
       ),
-      body: ChatUsers(),
+      body: Container(
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              child: Text('Search'),
+            ),
+            ChatUsers(),
+          ],
+        ),
+      ),
     );
   }
 }
