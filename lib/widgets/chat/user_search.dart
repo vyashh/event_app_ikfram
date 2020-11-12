@@ -1,9 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class UserSearch extends SearchDelegate<String> {
+  final Future<QuerySnapshot> users =
+      FirebaseFirestore.instance.collection('users').get();
 
-
-  
   @override
   List<Widget> buildActions(BuildContext context) {
     return [IconButton(icon: Icon(Icons.clear), onPressed: () {})];

@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:event_app_ikfram/widgets/chat/user_search.dart';
 import 'package:flutter/material.dart';
 
 import '../loading_screen.dart';
@@ -10,6 +12,17 @@ class ChatsPerson extends StatefulWidget {
 }
 
 class _ChatsPersonState extends State<ChatsPerson> {
+  void _getUsers() async {
+    final QuerySnapshot users =
+        await FirebaseFirestore.instance.collection('users').get();
+
+    users.docs.map((user) {
+      print(user['name']);
+    });
+
+    // print(users.docs);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +44,8 @@ class _ChatsPersonState extends State<ChatsPerson> {
               // color: Theme.of(context).accentColor,
             ),
             onPressed: () {
-              // Navigator.of(context).pushNamed(ChatsPerson.routeName);
+              // showSearch(context: context, delegate: UserSearch());
+              _getUsers();
             },
           ),
         ],
@@ -39,9 +53,6 @@ class _ChatsPersonState extends State<ChatsPerson> {
       body: Container(
         child: Column(
           children: <Widget>[
-            Expanded(
-              child: Text('Search'),
-            ),
             ChatUsers(),
           ],
         ),
