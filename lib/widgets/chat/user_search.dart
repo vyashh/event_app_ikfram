@@ -1,17 +1,30 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:event_app_ikfram/screens/chat/chat_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class UserSearch extends SearchDelegate<String> {
   Future getUsers() async {
     var firestore = FirebaseFirestore.instance;
 
-    QuerySnapshot userSnapshot = await firestore.collection('users').get();
+    QuerySnapshot userSnapshot = await firestore
+        .collection('users')
+        .where('name', isGreaterThanOrEqualTo: query.toUpperCase())
+        .get();
+
+    print(userSnapshot.docs[0]['name']);
     return userSnapshot.docs;
   }
 
   @override
   List<Widget> buildActions(BuildContext context) {
-    return [IconButton(icon: Icon(Icons.clear), onPressed: () {})];
+    return [
+      IconButton(
+          icon: Icon(Icons.clear),
+          onPressed: () {
+            query = '';
+          })
+    ];
   }
 
   @override
@@ -19,7 +32,9 @@ class UserSearch extends SearchDelegate<String> {
     return IconButton(
         icon: AnimatedIcon(
             icon: AnimatedIcons.menu_arrow, progress: transitionAnimation),
-        onPressed: () {});
+        onPressed: () {
+          close(context, null);
+        });
   }
 
   @override
@@ -35,12 +50,25 @@ class UserSearch extends SearchDelegate<String> {
             child: Text('Loading'),
           );
         }
+
+        List<dynamic> userList = snapshot.data.toList();
+
         return ListView.builder(
-          itemCount: snapshot.data.length,
+          itemCount: userList.length,
           itemBuilder: (context, index) {
             return ListTile(
-              title: Text(snapshot.data[index]['name']),
-            );
+                title: Text(userList[index]['name']),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ChatScreen(
+                              currentUser:
+                                  FirebaseAuth.instance.currentUser.uid,
+                              otherPerson: userList[index]['uid'],
+                            )),
+                  );
+                });
           },
         );
       },

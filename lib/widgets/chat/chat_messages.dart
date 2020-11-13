@@ -21,17 +21,18 @@ class ChatMessages extends StatelessWidget {
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return Text("Loading");
+          } else {
+            var messages = snapshot.data['messages'];
+            return ListView.builder(
+              itemCount: messages.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text(messages[index]['text']),
+                  subtitle: Text(messages[index]['sender']),
+                );
+              },
+            );
           }
-          var messages = snapshot.data['messages'];
-          return ListView.builder(
-            itemCount: messages.length,
-            itemBuilder: (context, index) {
-              return ListTile(
-                title: Text(messages[index]['text']),
-                subtitle: Text(messages[index]['sender']),
-              );
-            },
-          );
         });
   }
 }

@@ -2,7 +2,8 @@ import 'package:event_app_ikfram/widgets/chat/chat_messages.dart';
 import 'package:event_app_ikfram/widgets/chat/new_message.dart';
 import 'package:flutter/material.dart';
 
-class ChatScreen extends StatelessWidget {
+class ChatScreen extends StatefulWidget {
+  static const routeName = '/chat-user';
   final String currentUser;
   final String otherPerson;
 
@@ -11,6 +12,11 @@ class ChatScreen extends StatelessWidget {
     @required this.otherPerson,
   });
 
+  @override
+  _ChatScreenState createState() => _ChatScreenState();
+}
+
+class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,12 +36,12 @@ class ChatScreen extends StatelessWidget {
           children: <Widget>[
             Expanded(
               child: ChatMessages(
-                currentUser: currentUser,
-                otherPerson: otherPerson,
+                currentUser: widget.currentUser,
+                otherPerson: widget.otherPerson,
               ),
             ),
             NewMessage(
-              otherUser: otherPerson,
+              otherUser: widget.otherPerson,
             ),
           ],
         ),

@@ -39,7 +39,7 @@ class ChatUsers extends StatelessWidget {
                       MaterialPageRoute(
                           builder: (context) => ChatScreen(
                                 currentUser: currentUser.uid,
-                                otherPerson: '8QKb2l7SAMVt8Yo49oT2',
+                                otherPerson: chat['uid'],
                               )),
                     );
                   },
