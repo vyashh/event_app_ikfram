@@ -12,7 +12,6 @@ class UserSearch extends SearchDelegate<String> {
         .where('name', isGreaterThanOrEqualTo: query.toUpperCase())
         .get();
 
-    print(userSnapshot.docs[0]['name']);
     return userSnapshot.docs;
   }
 

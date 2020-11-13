@@ -97,7 +97,7 @@ class _EventFirstUpcomingCardState extends State<EventFirstUpcomingCard> {
                       width: 5,
                     ),
                     Text(
-                      'Bobby Brown',
+                      widget.event['teamleader'],
                       style: TextStyle(
                           fontSize: 12, color: Colors.white.withOpacity(.8)),
                     ),

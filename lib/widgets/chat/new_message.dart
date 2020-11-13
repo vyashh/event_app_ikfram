@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import '../../utils/custom_color_scheme.dart';
 
 class NewMessage extends StatefulWidget {
-  final String otherUser;
+  final String otherPerson;
 
-  NewMessage({this.otherUser});
+  NewMessage({this.otherPerson});
 
   @override
   _NewMessageState createState() => _NewMessageState();
@@ -26,10 +26,9 @@ class _NewMessageState extends State<NewMessage> {
 
     DocumentReference chatRef = FirebaseFirestore.instance
         .collection('chat')
-        .doc('iqz0dLPspNMD2qCDhqz8aWtGQtV2')
+        .doc(userData['uid'])
         .collection('chats')
-        .doc('8QKb2l7SAMVt8Yo49oT2');
-    print(userData['name']);
+        .doc(widget.otherPerson);
 
     chatRef.update({
       'messages': FieldValue.arrayUnion([

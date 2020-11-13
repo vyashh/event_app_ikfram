@@ -22,7 +22,9 @@ class AddEvent extends StatelessWidget {
         "eventColor": _colorRandom(),
         "attendees": [FirebaseAuth.instance.currentUser.uid],
         "dateTime": DateTime.utc(2021, DateTime.june, 6),
-        "teamleader": "prdvRniEhtdJgL9C8pkSgs7irh13"
+        "teamleaderUID": "prdvRniEhtdJgL9C8pkSgs7irh13",
+        "teamleader": "Vyash Bhawan",
+        "description": 'Hallo! Hier moeten jullie zijn. Wees op tijd!'
       }).then((response) {
         print(response.hashCode);
       });

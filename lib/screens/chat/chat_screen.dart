@@ -41,7 +41,7 @@ class _ChatScreenState extends State<ChatScreen> {
               ),
             ),
             NewMessage(
-              otherUser: widget.otherPerson,
+              otherPerson: widget.otherPerson,
             ),
           ],
         ),

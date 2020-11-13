@@ -103,8 +103,10 @@ class EventDetailsScreen extends StatelessWidget {
                           color: eventColor,
                           // textColor: Colors.white,
                           child: Text(
-                            "View on Maps",
-                            style: TextStyle(fontWeight: FontWeight.normal, color: Colors.white),
+                            "Open in Maps",
+                            style: TextStyle(
+                                fontWeight: FontWeight.normal,
+                                color: Colors.white),
                           ),
                           padding: const EdgeInsets.symmetric(
                             vertical: 16.0,
@@ -115,20 +117,26 @@ class EventDetailsScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 30.0),
                       Text(
-                        "Description".toUpperCase(),
+                        "Beschrijving".toUpperCase(),
                         style: TextStyle(
                             fontWeight: FontWeight.w600, fontSize: 14.0),
                       ),
                       const SizedBox(height: 10.0),
                       Text(
-                        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione architecto autem quasi nisi iusto eius ex dolorum velit! Atque, veniam! Atque incidunt laudantium eveniet sint quod harum facere numquam molestias?",
+                        event['description'],
                         textAlign: TextAlign.justify,
                         style: TextStyle(
                             fontWeight: FontWeight.w300, fontSize: 14.0),
                       ),
+                      const SizedBox(height: 30.0),
+                      Text(
+                        "Collega's".toUpperCase(),
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600, fontSize: 14.0),
+                      ),
                       const SizedBox(height: 10.0),
                       Text(
-                        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione architecto autem quasi nisi iusto eius ex dolorum velit! Atque, veniam! Atque incidunt laudantium eveniet sint quod harum facere numquam molestias?",
+                        event['description'],
                         textAlign: TextAlign.justify,
                         style: TextStyle(
                             fontWeight: FontWeight.w300, fontSize: 14.0),

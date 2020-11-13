@@ -11,6 +11,38 @@ class ChatMessages extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var firestore = FirebaseFirestore.instance;
+
+    Future<void> _checkExistsChat() async {
+      var userChat = firestore
+          .collection('chat')
+          .doc(currentUser)
+          .collection('chats')
+          .doc(otherPerson);
+
+      var userChatDoc = await userChat.get();
+      var otherPersonDoc =
+          await firestore.collection('users').doc(otherPerson).get();
+      print(otherPersonDoc['name']);
+
+      if (userChatDoc.exists) {
+        print(otherPersonDoc['name']);
+        return;
+      } else {
+        print('made chat');
+        await firestore
+            .collection('chat')
+            .doc(currentUser)
+            .collection('chats')
+            .doc(otherPerson)
+            .set(
+          {'uid': otherPerson, 'messages': [], 'name': otherPersonDoc['name']},
+        );
+      }
+    }
+
+    _checkExistsChat();
+
     return StreamBuilder(
         stream: FirebaseFirestore.instance
             .collection('chat')
