@@ -55,7 +55,19 @@ class EventAll extends StatelessWidget {
           if (snapshot.data.length <= 0) {
             return RefreshIndicator(
                 onRefresh: _refreshEvents,
-                child: Center(child: Text('No data')));
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'assets/images/no_data.png',
+                        scale: 7,
+                        fit: BoxFit.contain,
+                      ),
+                      Text('Geen rooster beschikbaar.')
+                    ],
+                  ),
+                ));
           }
           var data = snapshot.data;
           var timestampToDateTime =
