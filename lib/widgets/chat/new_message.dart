@@ -18,7 +18,7 @@ class _NewMessageState extends State<NewMessage> {
 
   void _sendMessage() async {
     // FocusScope.of(context).unfocus();
-    final currentUser = await FirebaseAuth.instance.currentUser;
+    final currentUser = FirebaseAuth.instance.currentUser;
     final userData = await FirebaseFirestore.instance
         .collection('users')
         .doc(currentUser.uid)
@@ -26,9 +26,11 @@ class _NewMessageState extends State<NewMessage> {
 
     DocumentReference chatRef = FirebaseFirestore.instance
         .collection('chat')
-        .doc(userData['uid'])
+        .doc(currentUser.uid)
         .collection('chats')
         .doc(widget.otherPerson);
+
+    print(chatRef);
 
     chatRef.update({
       'messages': FieldValue.arrayUnion([

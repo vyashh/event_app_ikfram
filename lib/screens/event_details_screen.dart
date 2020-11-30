@@ -1,4 +1,7 @@
 import 'package:event_app_ikfram/providers/color_provider.dart';
+import 'package:event_app_ikfram/screens/chat/chat_screen.dart';
+import 'package:event_app_ikfram/widgets/chat/chat_messages.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -130,17 +133,31 @@ class EventDetailsScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 30.0),
                       Text(
-                        "Collega's".toUpperCase(),
+                        "Teamleider".toUpperCase(),
                         style: TextStyle(
                             fontWeight: FontWeight.w600, fontSize: 14.0),
                       ),
                       const SizedBox(height: 10.0),
-                      Text(
-                        event['description'],
-                        textAlign: TextAlign.justify,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w300, fontSize: 14.0),
-                      ),
+                      ListTile(
+                        title: Text(event['teamleader']),
+                        trailing: Icon(Icons.chat),
+                        leading: CircleAvatar(
+                          backgroundImage:
+                              NetworkImage('https://i.pravatar.cc/300'),
+                        ),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ChatScreen(
+                                currentUser:
+                                    FirebaseAuth.instance.currentUser.uid,
+                                otherPerson: event['teamleader'],
+                              ),
+                            ),
+                          );
+                        },
+                      )
                     ],
                   ),
                 ),

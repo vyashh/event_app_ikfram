@@ -26,7 +26,7 @@ class ChatMessages extends StatelessWidget {
       print(otherPersonDoc['name']);
 
       if (userChatDoc.exists) {
-        print(otherPersonDoc['name']);
+        //print(otherPersonDoc['name']);
         return;
       } else {
         print('made chat');
@@ -41,8 +41,6 @@ class ChatMessages extends StatelessWidget {
       }
     }
 
-    _checkExistsChat();
-
     return StreamBuilder(
         stream: FirebaseFirestore.instance
             .collection('chat')
@@ -51,9 +49,14 @@ class ChatMessages extends StatelessWidget {
             .doc(otherPerson)
             .snapshots(),
         builder: (context, snapshot) {
-          if (!snapshot.hasData) {
-            return Text("Loading");
+          print(snapshot.data.exists);
+          if (!snapshot.data.exists) {
+            print('null');
+            return Center(
+              child: Text('No messages'),
+            );
           } else {
+            print('not null?');
             var messages = snapshot.data['messages'];
             return ListView.builder(
               itemCount: messages.length,

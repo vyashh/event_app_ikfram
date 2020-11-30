@@ -21,10 +21,23 @@ class AddEvent extends StatelessWidget {
         "name": getRandomString(10),
         "eventColor": _colorRandom(),
         "attendees": [FirebaseAuth.instance.currentUser.uid],
+
+        // "attendees": [
+        //   {
+        //     'attendee': FirebaseAuth.instance.currentUser.uid,
+        //     'start_shift': DateTime.now(),
+        //     'end_shift': DateTime.parse("2020-11-18 20:18:04Z"),
+        //   },
+        //   {
+        //     'attendee': 'FWdnSY6mKJQ7atbNHQjOpyXslP33',
+        //     'start_shift': DateTime.now(),
+        //     'end_shift': DateTime.parse("2020-11-18 20:18:04Z"),
+        //   }
+        // ],
         "dateTime": DateTime.utc(2021, DateTime.june, 6),
         "teamleaderUID": "prdvRniEhtdJgL9C8pkSgs7irh13",
         "teamleader": "Vyash Bhawan",
-        "description": 'Hallo! Hier moeten jullie zijn. Wees op tijd!'
+        "description": 'Hallo! Hier moeten jullie zijn. Wees op tijd!',
       }).then((response) {
         print(response.hashCode);
       });
