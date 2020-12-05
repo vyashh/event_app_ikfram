@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class UserSearch extends SearchDelegate<String> {
+  User currentUser = FirebaseAuth.instance.currentUser;
   Future getUsers() async {
     var firestore = FirebaseFirestore.instance;
 
@@ -55,7 +56,8 @@ class UserSearch extends SearchDelegate<String> {
         return ListView.builder(
           itemCount: userList.length,
           itemBuilder: (context, index) {
-            return ListTile(
+            if (userList[index]['uid'] != currentUser.uid) {
+              return ListTile(
                 title: Text(userList[index]['name']),
                 onTap: () {
                   Navigator.push(
@@ -67,7 +69,9 @@ class UserSearch extends SearchDelegate<String> {
                               otherPerson: userList[index]['uid'],
                             )),
                   );
-                });
+                },
+              );
+            }
           },
         );
       },

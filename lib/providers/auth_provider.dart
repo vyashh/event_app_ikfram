@@ -11,6 +11,7 @@ class AuthProvider {
 
   Future<String> submitForm(
       String username, String email, String password, bool isLogin) async {
+    print(username);
     if (isLogin) {
       try {
         userCredential = await _firebaseAuth.signInWithEmailAndPassword(
@@ -30,10 +31,13 @@ class AuthProvider {
     await FirebaseFirestore.instance
         .collection('users')
         .doc(userCredential.user.uid)
-        .set({
-      'email': email,
-      'name': username,
-    });
+        .set(
+      {
+        'email': email,
+        'name': username,
+        'uid': userCredential.user.uid,
+      },
+    );
   }
 
   Future<void> signOut() async {

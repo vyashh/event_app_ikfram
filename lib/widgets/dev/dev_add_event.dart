@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:provider/provider.dart';
+import '../../providers/auth_provider.dart';
 
 class AddEvent extends StatelessWidget {
   final _chars =
@@ -60,7 +62,13 @@ class AddEvent extends StatelessWidget {
         RaisedButton(
           onPressed: _addEvent,
           child: Text('Add Events'),
-        )
+        ),
+        RaisedButton(
+          onPressed: () {
+            context.read<AuthProvider>().signOut();
+          },
+          child: Text('Signout'),
+        ),
       ],
     );
   }

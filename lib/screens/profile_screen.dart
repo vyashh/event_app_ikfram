@@ -23,7 +23,7 @@ class ProfileScreen extends StatelessWidget {
             child: CircularProgressIndicator(),
           );
         }
-
+        print(currentUser.uid);
         var user = snapshot.data;
 
         return ListView(

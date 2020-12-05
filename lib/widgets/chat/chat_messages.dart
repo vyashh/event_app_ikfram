@@ -49,14 +49,12 @@ class ChatMessages extends StatelessWidget {
             .doc(otherPerson)
             .snapshots(),
         builder: (context, snapshot) {
-          print(snapshot.data.exists);
+          print(otherPerson);
           if (!snapshot.data.exists) {
-            print('null');
             return Center(
               child: Text('No messages'),
             );
           } else {
-            print('not null?');
             var messages = snapshot.data['messages'];
             return ListView.builder(
               itemCount: messages.length,

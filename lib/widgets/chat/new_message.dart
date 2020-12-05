@@ -30,17 +30,38 @@ class _NewMessageState extends State<NewMessage> {
         .collection('chats')
         .doc(widget.otherPerson);
 
-    print(chatRef);
-
-    chatRef.update({
-      'messages': FieldValue.arrayUnion([
-        {
-          'createdAt': 'Now',
-          'sender': userData['name'],
-          'senderId': currentUser.uid,
-          'text': _enteredMessage,
-        }
-      ])
+    chatRef.get().then((snapshot) {
+      if (snapshot.exists) {
+        chatRef.update(
+          {
+            'messages': FieldValue.arrayUnion([
+              {
+                'createdAt': 'Now',
+                'sender': userData['name'],
+                'senderId': currentUser.uid,
+                'text': _enteredMessage,
+              }
+            ]),
+            'name': userData['name'],
+            'uid': currentUser.uid
+          },
+        );
+      } else {
+        chatRef.set(
+          {
+            'messages': FieldValue.arrayUnion([
+              {
+                'createdAt': 'Now',
+                'sender': userData['name'],
+                'senderId': currentUser.uid,
+                'text': _enteredMessage,
+              }
+            ]),
+            'name': userData['name'],
+            'uid': currentUser.uid
+          },
+        );
+      }
     });
 
     _controller.clear();

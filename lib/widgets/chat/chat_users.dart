@@ -22,8 +22,12 @@ class ChatUsers extends StatelessWidget {
                 child: CircularProgressIndicator(),
               );
             }
-            // print(chatSnapshot.data.documents.length);
             // print(currentUser.uid);
+            if (chatSnapshot.data.documents.length <= 0) {
+              return Center(
+                child: Text('Start chatting'),
+              );
+            }
             return ListView.builder(
               reverse: true,
               itemCount: chatSnapshot.data.documents.length,
