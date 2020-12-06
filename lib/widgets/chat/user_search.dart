@@ -57,22 +57,22 @@ class UserSearch extends SearchDelegate<String> {
         return ListView.builder(
           itemCount: userList.length,
           itemBuilder: (context, index) {
-            return ListTile(
-              title: Text(userList[index]['name']),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => ChatScreen(
-                            currentUser: FirebaseAuth.instance.currentUser.uid,
-                            otherPerson: userList[index]['uid'],
-                          )),
-                );
-              },
-            );
-            // if (userList[index]['uid'] != currentUser.uid) {
-
-            // }
+            if (userList[index]['uid'] != currentUser.uid) {
+              return ListTile(
+                title: Text(userList[index]['name']),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ChatScreen(
+                              currentUser:
+                                  FirebaseAuth.instance.currentUser.uid,
+                              otherPerson: userList[index]['uid'],
+                            )),
+                  );
+                },
+              );
+            }
           },
         );
       },

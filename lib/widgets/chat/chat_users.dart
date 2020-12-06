@@ -29,14 +29,16 @@ class ChatUsers extends StatelessWidget {
               );
             }
             return ListView.builder(
-              reverse: true,
+              reverse: false,
               itemCount: chatSnapshot.data.documents.length,
               itemBuilder: (ctx, index) {
                 DocumentSnapshot chat = chatSnapshot.data.documents[index];
 
                 return ListTile(
-                  leading: Icon(Icons.person),
+                  // leading: Icon(Icons.person),
                   title: Text(chat['name']),
+                  trailing: Icon(Icons.chevron_right),
+                  subtitle: Text('Latest message placeholder'),
                   onTap: () {
                     Navigator.push(
                       context,

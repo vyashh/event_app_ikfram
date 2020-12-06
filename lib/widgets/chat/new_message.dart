@@ -19,45 +19,99 @@ class _NewMessageState extends State<NewMessage> {
   void _sendMessage() async {
     // FocusScope.of(context).unfocus();
     final currentUser = FirebaseAuth.instance.currentUser;
-    final userData = await FirebaseFirestore.instance
+    final otherUserData = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(widget.otherPerson)
+        .get();
+    final currentUserData = await FirebaseFirestore.instance
         .collection('users')
         .doc(currentUser.uid)
         .get();
 
-    DocumentReference chatRef = FirebaseFirestore.instance
+    DocumentReference chatRefCurrentUser = FirebaseFirestore.instance
         .collection('chat')
         .doc(currentUser.uid)
         .collection('chats')
         .doc(widget.otherPerson);
 
-    chatRef.get().then((snapshot) {
+    DocumentReference chatRefOtherUser = FirebaseFirestore.instance
+        .collection('chat')
+        .doc(widget.otherPerson)
+        .collection('chats')
+        .doc(currentUser.uid);
+
+    chatRefCurrentUser.get().then(
+      (snapshot) {
+        if (snapshot.exists) {
+          chatRefCurrentUser.update(
+            {
+              'messages': FieldValue.arrayUnion(
+                [
+                  {
+                    'createdAt': 'Now',
+                    'sender': currentUserData['name'],
+                    'senderId': currentUser.uid,
+                    'text': _enteredMessage,
+                  }
+                ],
+              ),
+              'name': otherUserData['name'],
+              'uid': widget.otherPerson
+            },
+          );
+        } else {
+          chatRefCurrentUser.set(
+            {
+              'messages': FieldValue.arrayUnion(
+                [
+                  {
+                    'createdAt': 'Now',
+                    'sender': currentUserData['name'],
+                    'senderId': currentUser.uid,
+                    'text': _enteredMessage,
+                  }
+                ],
+              ),
+              'name': otherUserData['name'],
+              'uid': widget.otherPerson
+            },
+          );
+        }
+      },
+    );
+
+    chatRefOtherUser.get().then((snapshot) {
       if (snapshot.exists) {
-        chatRef.update(
+        chatRefOtherUser.update(
           {
-            'messages': FieldValue.arrayUnion([
-              {
-                'createdAt': 'Now',
-                'sender': userData['name'],
-                'senderId': currentUser.uid,
-                'text': _enteredMessage,
-              }
-            ]),
-            'name': userData['name'],
+            'messages': FieldValue.arrayUnion(
+              [
+                {
+                  'createdAt': 'Now',
+                  'sender': currentUserData['name'],
+                  'senderId': widget.otherPerson,
+                  'text': _enteredMessage,
+                }
+              ],
+            ),
+            'name': currentUserData['name'],
             'uid': currentUser.uid
           },
         );
       } else {
-        chatRef.set(
+        chatRefOtherUser.set(
           {
-            'messages': FieldValue.arrayUnion([
-              {
-                'createdAt': 'Now',
-                'sender': userData['name'],
-                'senderId': currentUser.uid,
-                'text': _enteredMessage,
-              }
-            ]),
-            'name': userData['name'],
+            'messages': FieldValue.arrayUnion(
+              [
+                {
+                  'createdAt': 'Now',
+                  'sender': currentUserData['name'],
+                  'senderId': widget.otherPerson,
+                  'text': _enteredMessage,
+                }
+              ],
+            ),
+            'name': currentUserData['name'],
             'uid': currentUser.uid
           },
         );
