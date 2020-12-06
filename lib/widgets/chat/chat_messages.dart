@@ -49,7 +49,6 @@ class ChatMessages extends StatelessWidget {
             .doc(otherPerson)
             .snapshots(),
         builder: (context, snapshot) {
-          print(otherPerson);
           if (!snapshot.data.exists) {
             return Center(
               child: Text('No messages'),

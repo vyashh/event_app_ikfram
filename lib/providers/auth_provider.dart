@@ -26,18 +26,18 @@ class AuthProvider {
       } on FirebaseAuthException catch (error) {
         return error.message;
       }
-    }
 
-    await FirebaseFirestore.instance
-        .collection('users')
-        .doc(userCredential.user.uid)
-        .set(
-      {
-        'email': email,
-        'name': username,
-        'uid': userCredential.user.uid,
-      },
-    );
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(userCredential.user.uid)
+          .set(
+        {
+          'email': email,
+          'name': username,
+          'uid': userCredential.user.uid,
+        },
+      );
+    }
   }
 
   Future<void> signOut() async {

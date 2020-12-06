@@ -52,26 +52,27 @@ class UserSearch extends SearchDelegate<String> {
         }
 
         List<dynamic> userList = snapshot.data.toList();
+        print(userList[0]['uid']);
 
         return ListView.builder(
           itemCount: userList.length,
           itemBuilder: (context, index) {
-            if (userList[index]['uid'] != currentUser.uid) {
-              return ListTile(
-                title: Text(userList[index]['name']),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ChatScreen(
-                              currentUser:
-                                  FirebaseAuth.instance.currentUser.uid,
-                              otherPerson: userList[index]['uid'],
-                            )),
-                  );
-                },
-              );
-            }
+            return ListTile(
+              title: Text(userList[index]['name']),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ChatScreen(
+                            currentUser: FirebaseAuth.instance.currentUser.uid,
+                            otherPerson: userList[index]['uid'],
+                          )),
+                );
+              },
+            );
+            // if (userList[index]['uid'] != currentUser.uid) {
+
+            // }
           },
         );
       },
