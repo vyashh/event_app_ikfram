@@ -1,4 +1,5 @@
 import 'package:event_app_ikfram/providers/auth_provider.dart';
+import 'package:event_app_ikfram/screens/chat/chat_screen.dart';
 import 'package:event_app_ikfram/screens/dev_page.dart';
 import 'package:event_app_ikfram/screens/event_details_screen.dart';
 
@@ -7,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 
-import './screens/chat_screen.dart';
+import 'screens/chat/chats_person_screen.dart';
 import './widgets/auth/auth_wrapper.dart';
 
 Future<void> main() async {
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'Epp',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           fontFamily: 'Roboto',
           primarySwatch: Colors.purple,
@@ -38,7 +40,7 @@ class MyApp extends StatelessWidget {
         ),
         home: AuthWrapper(),
         routes: {
-          ChatScreen.routeName: (ctx) => ChatScreen(),
+          ChatsPerson.routeName: (ctx) => ChatsPerson(),
           EventDetailsScreen.routeName: (ctx) => EventDetailsScreen(),
           DevPage.routeName: (ctx) => DevPage(),
         },

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../providers/auth_provider.dart';
 import 'package:provider/provider.dart';
-
 // voer hier een functie uit die in authscreen staat. Hier geven we de gegevens
 // mee die vervolgens gebruikt/opgeslagen wordt in auth_screen
 
@@ -26,13 +25,15 @@ class _AuthFormState extends State<AuthForm> {
   void _trySubmit() {
     final isValid = _formKey.currentState.validate(); // valideer de form
     FocusScope.of(context).unfocus(); // unfocus de softkeyboard
-    print('_isLoading = true');
 
     if (isValid) {
-      setState(() {
-        _isLoading = true;
-      });
+      setState(
+        () {
+          _isLoading = true;
+        },
+      );
       _formKey.currentState.save();
+      print(_userName);
       context
           .read<AuthProvider>()
           .submitForm(_userName, _userEmail, _userPassword, _isLogin);
@@ -40,8 +41,6 @@ class _AuthFormState extends State<AuthForm> {
     setState(() {
       _isLoading = false;
     });
-
-    print('_isLoading = false');
 
     // if (_isLogin) {
     //   context.read<AuthProvider>().signIn(_userEmail, _userPassword);

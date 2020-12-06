@@ -55,13 +55,27 @@ class EventAll extends StatelessWidget {
           if (snapshot.data.length <= 0) {
             return RefreshIndicator(
                 onRefresh: _refreshEvents,
-                child: Center(child: Text('No data')));
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'assets/images/no_data.png',
+                        scale: 7,
+                        fit: BoxFit.contain,
+                      ),
+                      Text('Geen rooster beschikbaar.')
+                    ],
+                  ),
+                ));
           }
+
           var data = snapshot.data;
           var timestampToDateTime =
               DateTime.parse(data[0]['dateTime'].toDate().toString());
           var formattedDate =
               DateFormat('dd-MM-yyy | kk:mm').format(timestampToDateTime);
+
           return RefreshIndicator(
             onRefresh: _refreshEvents,
             child: CustomScrollView(
@@ -89,7 +103,7 @@ class EventAll extends StatelessWidget {
                               date: formattedDate,
                               event: data[0]);
                         },
-                      )
+                      ),
                     ],
                     flexibleSpace: EventFirstUpcomingCard(
                       event: data[0],

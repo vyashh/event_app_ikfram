@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:provider/provider.dart';
+import '../../providers/auth_provider.dart';
 
 class AddEvent extends StatelessWidget {
   final _chars =
@@ -21,8 +23,23 @@ class AddEvent extends StatelessWidget {
         "name": getRandomString(10),
         "eventColor": _colorRandom(),
         "attendees": [FirebaseAuth.instance.currentUser.uid],
+
+        // "attendees": [
+        //   {
+        //     'attendee': FirebaseAuth.instance.currentUser.uid,
+        //     'start_shift': DateTime.now(),
+        //     'end_shift': DateTime.parse("2020-11-18 20:18:04Z"),
+        //   },
+        //   {
+        //     'attendee': 'FWdnSY6mKJQ7atbNHQjOpyXslP33',
+        //     'start_shift': DateTime.now(),
+        //     'end_shift': DateTime.parse("2020-11-18 20:18:04Z"),
+        //   }
+        // ],
         "dateTime": DateTime.utc(2021, DateTime.june, 6),
-        "teamleader": "prdvRniEhtdJgL9C8pkSgs7irh13"
+        "teamleaderUID": "prdvRniEhtdJgL9C8pkSgs7irh13",
+        "teamleader": "Vyash Bhawan",
+        "description": 'Hallo! Hier moeten jullie zijn. Wees op tijd!',
       }).then((response) {
         print(response.hashCode);
       });
@@ -45,7 +62,13 @@ class AddEvent extends StatelessWidget {
         RaisedButton(
           onPressed: _addEvent,
           child: Text('Add Events'),
-        )
+        ),
+        RaisedButton(
+          onPressed: () {
+            context.read<AuthProvider>().signOut();
+          },
+          child: Text('Signout'),
+        ),
       ],
     );
   }
